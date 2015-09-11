@@ -1,0 +1,41 @@
+Adding the host to known_hosts list
+
+ssh-keyscan 10.10.1.46 >> ~/.ssh/known_hosts
+
+
+Ask Password:
+ansible-playbook -i hosts playbooks/bootstrap.yml --user root --ask-pass
+
+ansible -i hosts all --list-hosts
+
+ansible all -i 'hosts' -m command -a 'echo "Hello World"'
+
+ansible TestHosts -i hosts -m command -a 'df -kh'
+
+ansible TestHosts -i hosts -m script -a foo.sh -u root
+
+
+ansible TestHosts -i hosts -m command -a 'service ganglia-monitor status'
+
+For Getting all the system information: 
+	ansible TestHosts -i hosts -m setup 
+	
+	ansible TestHosts -i hosts -m setup -a "filter=ansible_nodename"
+
+		{{ ansible_local.preferences.general.asdf }}
+
+
+
+
+
+
+---
+- hosts: JettyNodes
+  tasks:
+    - name:
+      command:
+      get_url:
+      sudo:
+      lineinfile:
+
+
